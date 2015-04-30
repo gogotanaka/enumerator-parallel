@@ -1,4 +1,4 @@
-# ParallelEnumerable
+# Enumerable::Parallel
 
 ```ruby
 require 'enumerable-parallel'
