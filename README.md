@@ -3,9 +3,9 @@
 ```ruby
 require 'enumerable-parallel'
 
-[1, 2, 3].paralell(processes: 3).each { |n| sleep 1; p n }
+[1, 2, 3].paralell(in_processes: 3).each { |n| sleep 1; p n }
 
-[1, 2, 3].paralell(threads: 3).map { |n| sleep 1; p n }
+[1, 2, 3].paralell(in_threads: 3).map { |n| sleep 1; p n }
 ```
 
 ## Installation
