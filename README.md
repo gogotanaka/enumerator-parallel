@@ -3,9 +3,22 @@
 ```ruby
 require 'enumerator-parallel'
 
-[1, 2, 3].paralell(in_processes: 3).each { |n| sleep 1; p n }
+[1, 2, 3].par(in_processes: 3).each { |n| sleep 1; p n }
 
-[1, 2, 3].paralell(in_threads: 3).map { |n| sleep 1; p n }
+[1, 2, 3].par(in_threads: 3).map { |n| sleep 1; p n }
+```
+3 times fater! wow wow wow
+
+#### You need to take care of side-effecting
+```ruby
+$global_var = 1
+(0..10).to_a.par(in_threads: 3).map { |n| sleep rand; $global_var += 1 }
+```
+There are difference ↑ and ↓ :D
+
+```ruby
+$global_var = 1
+(0..10).to_a.map { |n| sleep rand; $global_var += 1 }
 ```
 
 ## Installation
