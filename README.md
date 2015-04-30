@@ -1,7 +1,7 @@
-# Enumerable::Parallel
+# Enumerator::Parallel
 
 ```ruby
-require 'enumerable-parallel'
+require 'enumerator-parallel'
 
 [1, 2, 3].paralell(in_processes: 3).each { |n| sleep 1; p n }
 
@@ -12,11 +12,11 @@ require 'enumerable-parallel'
 
 Have it your way.
 
-    $ echo "gem 'enumerable-parallel'" >> Gemfile; bundle
+    $ echo "gem 'enumerator-parallel'" >> Gemfile; bundle
 
 or
 
-    $ gem install enumerable-parallel
+    $ gem install enumerator-parallel
 
 
 ## Development
