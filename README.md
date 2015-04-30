@@ -1,23 +1,22 @@
 # ParallelEnumerable
 
 ```ruby
-require 'parallel-enumerable'
-include ParallelEnumerable
+require 'enumerable-parallel'
 
-[1, 2, 3]._each(in_processes: 3) { |n| sleep 1; p n }
+[1, 2, 3].paralell(processes: 3).each { |n| sleep 1; p n }
 
-[1, 2, 3]._map(in_threads: 3) { |n| sleep 1; p n }
+[1, 2, 3].paralell(threads: 3).map { |n| sleep 1; p n }
 ```
 
 ## Installation
 
 Have it your way.
 
-    $ echo "gem 'parallel-enumerable'" >> Gemfile; bundle
+    $ echo "gem 'enumerable-parallel'" >> Gemfile; bundle
 
 or
 
-    $ gem install parallel-enumerable
+    $ gem install enumerable-parallel
 
 
 ## Development
