@@ -4,13 +4,13 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'enumerator-parallel/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = "parallel-enumerable"
+  spec.name          = "enumerator-parallel"
   spec.version       = ParallelEnumerable::VERSION
   spec.authors       = ["gogotanaka"]
   spec.email         = ["mail@tanakakazuki.com"]
 
-  spec.summary       = %q{ Simple wrapper between parallel and enumerable. }
-  spec.description   = %q{ Simple wrapper between parallel and enumerable. }
+  spec.summary       = %q{ Simple wrapper between enumerator and parallel. }
+  spec.description   = %q{ Simple wrapper between enumerator and parallel. }
   spec.homepage      = "https://github.com/gogotanaka/parallel-enumerable"
 
   spec.files         = `git ls-files -z`.split("\x0").reject { |f| f.match(%r{^(test|spec|features)/}) }
