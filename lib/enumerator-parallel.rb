@@ -30,13 +30,14 @@ class Enumerator::Parallel
     map(&block).any?
   end
 
-  def select(&block)
-    map_num = map(&block)
-    @enum.select.with_index { |_, i| map_num[i] }
+  %w|group_by select reject|.each do |mth|
+    define_method(mth) do |*args, &block|
+      map_num = map(&block)
+      @enum.send(mth).with_index { |_, i| map_num[i] }
+    end
   end
 
-  def reject(&block)
-    map_num = map(&block)
-    @enum.reject.with_index { |_, i| map_num[i] }
+  def count(&block)
+    map(&block).count(true)
   end
 end

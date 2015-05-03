@@ -3,11 +3,9 @@ require 'minitest_helper'
 class TestParallelEnumerable < Minitest::Test
   def setup
     @enum3  = { a: 1, b: 2, c: 3 }
-    @enum10 = (1..10)
     @enum20 = (1..20).to_a
 
     @enum_par3  = { a: 1, b: 2, c: 3 }
-    @enum_par10 = (1..10).par(threads: 10)
     @enum_par20 = (1..20).to_a.par(threads: 20)
   end
 
@@ -18,5 +16,8 @@ class TestParallelEnumerable < Minitest::Test
 
     assert @enum_par20.all? { |n| sleep 1; n > 0 }
     assert @enum_par20.any? { |n| sleep 1; n == 1 }
+
+    assert_equal @enum20.count { |x| x%2==0 }, @enum_par20.count { |x| sleep 1; x%2==0 }
+    assert_equal @enum20.group_by { |x| x%2 }, @enum_par20.group_by { |x| x%2 }
   end
 end
