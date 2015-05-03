@@ -9,17 +9,34 @@ module Enumerable
 end
 
 class Enumerator::Parallel
-  include Enumerable
   def initialize(enum, options)
     mappings = { processes: :in_processes, threads: :in_threads }
-    @enum, @options = enum, Hash[options.map { |k, v| [(mappings[k] || k), v] }]
+    @enum, @options = enum.to_a, Hash[options.map { |k, v| [(mappings[k] || k), v] }]
   end
 
-  def each(options = {}, &block)
+  def each(&block)
     ::Parallel.each(@enum, @options, &block)
   end
 
-  def map(options = {}, &block)
+  def map(&block)
     ::Parallel.map(@enum, @options, &block)
+  end
+
+  def all?(&block)
+    map(&block).all?
+  end
+
+  def any?(&block)
+    map(&block).any?
+  end
+
+  def select(&block)
+    map_num = map(&block)
+    @enum.select.with_index { |_, i| map_num[i] }
+  end
+
+  def reject(&block)
+    map_num = map(&block)
+    @enum.reject.with_index { |_, i| map_num[i] }
   end
 end
