@@ -7,7 +7,7 @@ require 'enumerator-parallel'
 ```
 3 times fater! wow wow wow
 
-`enumerator-parallel` keep order of `enumerator` \\(^o^)/
+`enumerator-parallel` keep order of results \\(^o^)/
 
 ```ruby
 [1, 2, 3].par(threads: 3).map { |n| sleep 1; p n }
