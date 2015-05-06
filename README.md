@@ -4,17 +4,40 @@
 require 'enumerator-parallel'
 
 [1, 2, 3].par(processes: 3).each { |n| sleep 1; p n }
-
-[1, 2, 3].par(threads: 3).map { |n| sleep 1; p n }
 ```
 3 times fater! wow wow wow
 
+`enumerator-parallel` keep order of `enumerator` \\(^o^)/
+
+```ruby
+[1, 2, 3].par(threads: 3).map { |n| sleep 1; p n }
+#=> [1, 2, 3]
+
+[1, 2, 3].par(proceses: 3).select { |n| sleep 1; n > 1 }
+#=> [2, 3]
+
+(1..10).par(threads: 10).reject { |n| sleep 1; n.odd? }
+#=> [2, 4, 6, 8, 10]
+```
+
+```ruby
+(1..10).par(threads: 10).all? { |n| n > 0 }
+#=> true
+
+(1..10).par(threads: 10).any? { |n| n == 10 }
+#=> true
+```
+
 #### You need to take care of side-effecting
+While keeping order of results, order of calling `block` is randomly.
+
+
+
 ```ruby
 $global_var = 1
 (0..10).par(threads: 3).map { |n| sleep rand; $global_var += 1 }
 ```
-There are difference ↑ and ↓ :D
+You could find difference between ↑ and ↓ :D
 
 ```ruby
 $global_var = 1
