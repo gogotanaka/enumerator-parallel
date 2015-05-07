@@ -11,7 +11,7 @@ Gem::Specification.new do |spec|
 
   spec.summary       = %q{ Simple wrapper between enumerator and parallel. }
   spec.description   = %q{ Simple wrapper between enumerator and parallel. }
-  spec.homepage      = "https://github.com/gogotanaka/parallel-enumerable"
+  spec.homepage      = "https://github.com/gogotanaka/enumerator-parallel"
 
   spec.files         = `git ls-files -z`.split("\x0").reject { |f| f.match(%r{^(test|spec|features)/}) }
   spec.bindir        = "exe"
